@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../CSS/index.css" />
+    <!-- Conecto css a html mediante el link:css -->
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="contenedor">
+      <div id="cabezal" class="clearfix">
+        <img
+          id="logo"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Commons-logo.svg/1524px-Commons-logo.svg.png"
+          alt="logo"
+        />
+        <ul id="navPrincipal">
+          <li id="btnSeccionRegistrarse" class="boton">
+            <a>Ingresar / Registrarse </a>
+          </li>
+          <li id="btnSeccionAlquilerMaquinasVirtuales" class="boton user">
+            <a>Alquiler de Maquina Virtual</a>
+          </li>
+          <li id="btnSeccionListadoMaquinas" class="boton user">
+            <a>Ver listado de máquinas alquiladas y su estado</a>
+          </li>
+          <li id="btnSeccionAdmin" class="boton admin">
+            <a>Admisión de usuarios</a>
+          </li>
+          <li id="btnSeccionInforme" class="boton admin">
+            <a>Informes de máquinas</a>
+          </li>
+          <li id="btnCerrarSeccion" class="boton user admin">
+            <a>Cerrar Seccion</a>
+          </li>
+        </ul>
+      </div>
+      <!-- FIN CABEZAL -->
+      <div id="contenido">
+        <div id="seccionRegistrarse" class="seccion">
+          <h1>Registro de Usuarios</h1>
+
+          <label for="txtNombre">Nombre</label>
+          <input type="text" id="txtNombre" /><br />
+          <label for="txtApellido">Apellido</label>
+          <input type="text" id="txtApellido" /><br />
+          <label for="txtNombreUsuario">Nombre de Usuario</label>
+          <input type="text" id="txtNombreUsuario" /><br />
+          <label for="txtContraseña">Contraseña:</label><br />
+          <span
+            >(Debe contener al menos 5 caracteres, al menos una mayuscula , una
+            minuscula y un numero)</span
+          >
+          <input type="text" id="txtContraseña" />
+          <label for="txtTarjetaCredito">Número de tarjeta de crédito</label>
+          <input type="text" id="txtTarjetaCredito" /><br />
+          <label for="txtCvc">CVC</label><br />
+          <span>(Formato numerico de 3 digitos)</span>
+          <input type="number" id="txtCVC" /><br />
+
+          <input type="button" value="Registrarse" id="btnRegistrarse" />
+          <input
+            type="button"
+            value="Cambiar a Login"
+            id="btnCambiarALogin"
+            onclick="cambiarSeccion('seccionIngreso')"
+          />
+
+          <p id="pMensajesError1"></p>
+          <p id="pMensajesErrorTarjeta"></p>
+        </div>
+        <div id="seccionIngreso" class="seccion">
+          <hr />
+
+          <h1>Ingreso de Usuarios/Administradores</h1>
+
+          <label for="txtNombre1">Nombre</label>
+          <input type="text" id="txtNombre1" /><br />
+          <label for="txtContraseña1">Contraseña:</label>
+          <input type="text" id="txtContraseña1" /><br />
+
+          <input type="button" value="Ingresar" id="btnIngresar" />
+          <input
+            type="button"
+            value="Cambiar a Registro"
+            id="btnCambiarARegistro"
+            onclick="cambiarSeccion('seccionRegistrarse')"
+          />
+
+          <p id="pMensajesError2"></p>
+        </div>
+        <!-- FIN INGRESO Y REGISTRO DE USUARIOS, Y INGRESO ADMIN  -->
+
+        <div id="seccionAlquilerMaquinasVirtuales" class="seccion">
+          <h1>Maquinas Virtuales</h1>
+
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Equipos</th>
+                <th>Precio U$S:</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>
+                  <select name="" id="slcInstancias">
+                    <option value="c7s">Optimizadas para computo Small</option>
+                    <option value="c7m">Optimizadas para computo Medium</option>
+                    <option value="c7l">Optimizadas para computo Large</option>
+                    <option value="r7s">Optimizadas para memoria Small</option>
+                    <option value="r7m">Optimizadas para memoria Medium</option>
+                    <option value="r7l">Optimizadas para memoria Large</option>
+                    <option value="i7m">
+                      Optimizadas para almacenamiento Medium
+                    </option>
+                    <option value="i7l">
+                      Optimizadas para almacenamiento Large
+                    </option>
+                  </select>
+                </th>
+                <th id="thPrecioInstancias"></th>
+              </tr>
+            </tbody>
+          </table>
+
+          <br />
+
+          <hr />
+          <input type="button" value="rentar Maquina" id="btnRentar" />
+          <p id="pParrafo"></p>
+        </div>
+        <!-- FIN ALQUILER MAQUINAS VIRTUALES  -->
+
+        <div id="seccionListadoMaquinas" class="seccion">
+          <h1>Maquinas Virtuales</h1>
+
+          <label for="filtroEstado">Filtrar por Estado:</label>
+          <select id="filtroEstado">
+            <option value="todos">Todos</option>
+            <option value="activas">Activas</option>
+            <option value="inactivas">Inactivas</option>
+          </select>
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Instancias</th>
+                <th>Estado</th>
+                <th>Veces encendida</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="tblInstancias"></tbody>
+          </table>
+
+          <button id="btnGenerarTablaInstancias">
+            Generar Tabla de Instancias
+          </button>
+
+          <br />
+          <hr />
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Instancias</th>
+                <th>Costo por encendido</th>
+                <th>Veces encendido</th>
+                <th>Costo del Alquiler</th>
+                <th>Costo Total</th>
+              </tr>
+            </thead>
+            <tbody id="tblCostoInstancias"></tbody>
+          </table>
+
+          <button id="btnGenerarTablaCostoInstancias">Mostrar Costo</button>
+
+          <br />
+          <hr />
+        </div>
+        <!-- FIN DIV INSTANCIAS -->
+
+        <div id="seccionAdmin" class="administrador">
+          <h1>Administrador</h1>
+          <h2>Lista de Usuarios</h2>
+          <ul id="userList"></ul>
+        </div>
+
+        <div id="seccionInforme" class="administrador">
+          <h1>Informe de Maquinas virtuales</h1>
+          <table>
+            <thead>
+              <th>Nombre de la máquina</th>
+              <th>Máquinas en stock</th>
+              <th>Alquiladas actualmente</th>
+              <th>Total de veces encendidas</th>
+              <th>Ingreso por máquina</th>
+              <th>Ingreso por máquina encendida</th>
+              <th>Ingreso total registrado</th>
+            </thead>
+            <tbody id="tblInformeAdmin"></tbody>
+          </table>
+          <p id="pIngresosTotales"></p>
+        </div>
+      </div>
+      <!-- FIN CONTENIDO -->
+    </div>
+    <!-- FIN CONTENEDOR -->
+    <script src="../JS/administrador.js"></script>
+    <script src="../JS/sistema.js"></script>
+    <script src="../JS/estadoEquipos.js"></script>
+    <script src="../JS/tipoInstancias.js"></script>
+    <script src="../JS/usuario.js"></script>
+    <script src="../JS/index.js"></script>
+  </body>
+</html>
